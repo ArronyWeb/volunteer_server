@@ -30,13 +30,15 @@ async function run() {
             const result = await cursor.toArray()
             res.send(result)
         })
+        // get the single volunteer 
         app.get('/volunteer/:id', async (req, res) => {
             const id = req.params.id;
-            console.log(id)
             const query = { _id: ObjectId(id) }
             const result = await volunteerCollection.findOne(query)
             res.send(result)
         })
+
+        // send data to the server 
         app.post('/registered', async (req, res) => {
             const user = req.body;
             const result = await registerCollection.insertOne(user)
